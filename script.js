@@ -4,7 +4,6 @@
 
 const reliveBtn = document.getElementById("reliveBtn");
 
-const homeScreen = document.getElementById("homeScreen");
 const storyScreen = document.getElementById("storyScreen");
 
 const chapterTitle = document.getElementById("chapterTitle");
