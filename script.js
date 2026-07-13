@@ -23,10 +23,12 @@ reliveBtn.addEventListener("click", () => {
 
     setTimeout(() => {
 
-        homeScreen.style.display = "none";
+        homeScreen.classList.remove("show");
+homeScreen.classList.add("hidden");
 
-        storyScreen.style.display = "flex";
-        storyScreen.classList.add("fadeIn");
+        storyScreen.classList.remove("hidden");
+storyScreen.classList.add("show");
+storyScreen.classList.add("fadeIn");
 
     }, 700);
 
