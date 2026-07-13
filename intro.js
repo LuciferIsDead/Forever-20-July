@@ -68,10 +68,21 @@ function midnight(){
     // Intro Text
     setTimeout(() => {
 
-        introSentence.classList.remove("hidden");
-        introSentence.classList.add("show");
+    introSentence.classList.remove("hidden");
 
-    },5000);
+    const lines = introSentence.querySelectorAll("p");
+
+    lines.forEach((line,index)=>{
+
+        setTimeout(()=>{
+
+            line.classList.add("showLine");
+
+        },index*1000);
+
+    });
+
+},5000);
 
     // Home Screen
     setTimeout(() => {
