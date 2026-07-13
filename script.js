@@ -3,7 +3,10 @@
 // =====================================
 
 const reliveBtn = document.getElementById("reliveBtn");
-const homeScreen = document.getElementById("homeScreen");
+
+// CHANGE THIS NAME
+const home = document.getElementById("homeScreen");
+
 const storyScreen = document.getElementById("storyScreen");
 
 const chapterTitle = document.getElementById("chapterTitle");
@@ -40,8 +43,7 @@ story of our lives.
 
 reliveBtn.onclick = function () {
 
-    homeScreen.style.display = "none";
-
+    home.style.display = "none";
     storyScreen.style.display = "flex";
 
 };
