@@ -3,38 +3,15 @@
 // =====================================
 
 const reliveBtn = document.getElementById("reliveBtn");
-
 const homeScreen = document.getElementById("homeScreen");
 const storyScreen = document.getElementById("storyScreen");
 
 const chapterTitle = document.getElementById("chapterTitle");
 const chapterText = document.getElementById("chapterText");
-
 const nextStory = document.getElementById("nextStory");
 
 // =====================================
-// OPEN STORY
-// =====================================
-
-reliveBtn.addEventListener("click", () => {
-reliveBtn.addEventListener("click", () => {
-
-    homeScreen.classList.add("fadeOut");
-
-    setTimeout(() => {
-
-        homeScreen.classList.remove("show");
-        homeScreen.classList.add("hidden");
-
-        storyScreen.classList.remove("hidden");
-        storyScreen.classList.add("show");
-
-    }, 800);
-
-});
-
-// =====================================
-// CHAPTER 1
+// CHAPTER 1 CONTENT
 // =====================================
 
 chapterTitle.textContent = "The Night Everything Changed";
@@ -50,6 +27,19 @@ Neither of us knew that one little reply
 would slowly become the most beautiful
 story of our lives.
 `;
+
+// =====================================
+// OPEN STORY
+// =====================================
+
+reliveBtn.addEventListener("click", () => {
+
+    homeScreen.classList.add("hidden");
+
+    storyScreen.classList.remove("hidden");
+    storyScreen.style.display = "flex";
+
+});
 
 // =====================================
 // NEXT BUTTON
