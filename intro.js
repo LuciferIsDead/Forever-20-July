@@ -84,12 +84,16 @@ function startSequence() {
     }, 6200);
 
     // Fade out intro
+setTimeout(() => {
+
+    introScreen.style.transition = "opacity 1.5s ease";
+
+    introScreen.style.opacity = "0";
+
     setTimeout(() => {
 
-        introScreen.style.transition = "opacity 1.5s ease";
+        introScreen.style.display = "none";
 
-        introScreen.style.opacity = "0";
+    }, 1500);
 
-    }, 9000);
-
-}
+}, 9000);
