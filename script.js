@@ -3,27 +3,12 @@
 // =====================================
 
 const reliveBtn = document.getElementById("reliveBtn");
-
+const homeScreen = document.getElementById("homeScreen");
 const storyScreen = document.getElementById("storyScreen");
 
 const chapterTitle = document.getElementById("chapterTitle");
 const chapterText = document.getElementById("chapterText");
-
 const nextStory = document.getElementById("nextStory");
-
-// =====================================
-// OPEN STORY
-// =====================================
-
-reliveBtn.addEventListener("click", () => {
-
-    homeScreen.classList.remove("show");
-    homeScreen.classList.add("hidden");
-
-    storyScreen.classList.remove("hidden");
-    storyScreen.classList.add("show");
-
-});
 
 // =====================================
 // CHAPTER 1
@@ -50,10 +35,22 @@ story of our lives.
 `;
 
 // =====================================
+// OPEN STORY
+// =====================================
+
+reliveBtn.onclick = function () {
+
+    homeScreen.style.display = "none";
+
+    storyScreen.style.display = "flex";
+
+};
+
+// =====================================
 // NEXT BUTTON
 // =====================================
 
-nextStory.addEventListener("click", () => {
+nextStory.onclick = function () {
 
     chapterTitle.textContent = "Chapter 02";
 
@@ -67,19 +64,12 @@ Version 1.2 will include:
 <br><br>
 
 • Instagram Group Chat
-
 <br>
-
 • Samuel
-
 <br>
-
 • Fake Couple
-
 <br>
-
 • First Feelings ❤️
-
 `;
 
-});
+};
