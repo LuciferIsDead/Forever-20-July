@@ -15,20 +15,21 @@ const line3 = document.getElementById("line3");
 const introScreen = document.getElementById("introScreen");
 
 // ===============================
-// START TIME
+// START CLOCK
 // ===============================
 
 let second = 50;
-
-// ===============================
-// CLOCK
-// ===============================
 
 const timer = setInterval(() => {
 
     second++;
 
-    if (second > 59) {
+    if (second <= 59) {
+
+        clock.textContent =
+            `11:59:${String(second).padStart(2, "0")} PM`;
+
+    } else {
 
         clearInterval(timer);
 
@@ -37,11 +38,7 @@ const timer = setInterval(() => {
 
         startSequence();
 
-        return;
-
     }
-
-    clock.textContent = `11:59:${String(second).padStart(2, "0")} PM`;
 
 }, 1000);
 
@@ -84,16 +81,17 @@ function startSequence() {
     }, 6200);
 
     // Fade out intro
-setTimeout(() => {
-
-    introScreen.style.transition = "opacity 1.5s ease";
-
-    introScreen.style.opacity = "0";
-
     setTimeout(() => {
 
-        introScreen.style.display = "none";
+        introScreen.style.transition = "opacity 1.5s ease";
+        introScreen.style.opacity = "0";
 
-    }, 1500);
+        setTimeout(() => {
 
-}, 9000);
+            introScreen.style.display = "none";
+
+        }, 1500);
+
+    }, 9000);
+
+}
