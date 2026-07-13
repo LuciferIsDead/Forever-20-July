@@ -17,20 +17,19 @@ const nextStory = document.getElementById("nextStory");
 // =====================================
 
 reliveBtn.addEventListener("click", () => {
+reliveBtn.addEventListener("click", () => {
 
-    homeScreen.classList.remove("show");
     homeScreen.classList.add("fadeOut");
 
     setTimeout(() => {
 
         homeScreen.classList.remove("show");
-homeScreen.classList.add("hidden");
+        homeScreen.classList.add("hidden");
 
         storyScreen.classList.remove("hidden");
-storyScreen.classList.add("show");
-storyScreen.classList.add("fadeIn");
+        storyScreen.classList.add("show");
 
-    }, 700);
+    }, 800);
 
 });
 
