@@ -158,10 +158,6 @@ body{
 
     z-index:2;
 
-    opacity:0;
-
-    transform:translateY(20px);
-
 }
 
 #introSentence p{
@@ -171,6 +167,36 @@ body{
     font-size:1.1rem;
 
     color:#e2e8f0;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+}
+
+#introSentence p.showLine{
+
+    animation:lineFade .8s forwards;
+
+}
+
+@keyframes lineFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
 
 }
 
