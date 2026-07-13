@@ -12,12 +12,12 @@ const line1 = document.getElementById("line1");
 const line2 = document.getElementById("line2");
 const line3 = document.getElementById("line3");
 
+const introScreen = document.getElementById("introScreen");
+
 // ===============================
 // START TIME
 // ===============================
 
-let hour = 11;
-let minute = 59;
 let second = 50;
 
 // ===============================
@@ -28,7 +28,7 @@ const timer = setInterval(() => {
 
     second++;
 
-    if(second > 59){
+    if (second > 59) {
 
         clearInterval(timer);
 
@@ -41,47 +41,55 @@ const timer = setInterval(() => {
 
     }
 
-    clock.textContent =
-    `11:59:${String(second).padStart(2,"0")} PM`;
+    clock.textContent = `11:59:${String(second).padStart(2, "0")} PM`;
 
-},1000);
+}, 1000);
 
 // ===============================
 // INTRO SEQUENCE
 // ===============================
 
-function startSequence(){
+function startSequence() {
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         ghumai.classList.remove("hidden");
         ghumai.classList.add("show");
 
-    },800);
+    }, 800);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         ghuman.classList.remove("hidden");
         ghuman.classList.add("show");
 
-    },2500);
+    }, 2500);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         line1.classList.add("visible");
 
-    },4200);
+    }, 4200);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         line2.classList.add("visible");
 
-    },5200);
+    }, 5200);
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         line3.classList.add("visible");
 
-    },6200);
+    }, 6200);
+
+    // Fade out intro
+    setTimeout(() => {
+
+        introScreen.style.transition = "opacity 1.5s ease";
+
+        introScreen.style.opacity = "0";
+
+    }, 9000);
 
 }
