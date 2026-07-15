@@ -1,1 +1,0 @@
-document.getElementById("begin").onclick=()=>alert("Welcome, Tayeba ❤️\nVersion 1.0");
