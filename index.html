@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>20 July ❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="intro.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="introScreen">
+  <div class="introBackground"><div class="stars"></div><div class="moon"></div></div>
+  <div class="clockContainer"><div id="clock">11:59:50 PM</div><div id="introDate">19 July 2025</div></div>
+  <div id="noteContainer"><div id="ghumai" class="noteBubble hidden">💭 Ghumai.</div><div id="ghuman" class="noteBubble hidden">💙 Ghuman.</div></div>
+  <div id="introSentence"><p id="line1">Neither of us knew...</p><p id="line2">that one little reply...</p><p id="line3">would become our favourite story.</p></div>
+</section>
+
+<section id="homeScreen" class="hidden">
+  <div class="background"><div class="stars"></div><div class="glow"></div><div class="floating-heart">♥</div></div>
+  <main class="container">
+    <p class="smallTitle">A journey that began with one reply...</p>
+    <h1>20 JULY</h1>
+    <p class="subTitle">365 Days.<br>Countless Memories.<br>One Beautiful Story.</p>
+    <button id="reliveBtn">Relive Our Story ❤️</button>
+  </main>
+  <footer>Made with ❤️ by Sumon</footer>
+</section>
+
+<section id="storyScreen" class="hidden">
+  <div class="storyBackground"><div class="story-orb orb-one"></div><div class="story-orb orb-two"></div><div class="story-stars"></div></div>
+  <div id="storyWrapper">
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="storyCard" id="storyCard">
+      <div class="dateBadge" id="chapterDate"></div>
+      <div class="chapterNumber" id="chapterNumber">CHAPTER 01 / 13</div>
+      <div class="chapterIcon" id="chapterIcon">🌙</div>
+      <h2 id="chapterTitle"></h2>
+      <p class="chapterSubtitle" id="chapterSubtitle"></p>
+      <div id="chapterText" class="chapterText"></div>
+      <div id="chapterVisual" class="chapterVisual"></div>
+      <button id="nextStory">Continue ❤️</button>
+    </div>
+    <div class="storyControls"><button id="backStory" class="secondaryBtn">← Back</button><span id="storyHint">Your story, one memory at a time.</span></div>
+  </div>
+</section>
+
+<div id="memoryOverlay" class="hidden"><div class="memoryBox"><button id="closeMemory" aria-label="Close">×</button><h3 id="memoryTitle">Memory</h3><p id="memoryDescription"></p></div></div>
+<script src="intro.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
