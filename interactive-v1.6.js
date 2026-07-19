@@ -16,7 +16,7 @@
             music.play().then(function () {
               musicButton.textContent = "🔊";
             }).catch(function () {
-              musicButton.title = "Add assets/audio/perfect-edm.mp3 to enable music";
+              musicButton.title = "Add assets/music/perfect-edm.mp3 to enable music";
             });
           } else {
             music.pause();
