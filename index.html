@@ -13,7 +13,7 @@
 <body>
 <section id="introScreen">
   <div class="introBackground"><div class="stars"></div><div class="moon"></div></div>
-  <div class="clockContainer"><div id="clock">11:59:50 PM</div><div id="introDate">19 July 2025</div></div>
+  <div class="clockContainer"><div id="clock">11:59:50 PM</div><div id="introDate">19 July 2026</div></div>
   <div id="noteContainer"><div id="ghumai" class="noteBubble hidden">💭 Ghumai.</div><div id="ghuman" class="noteBubble hidden">💙 Ghuman.</div></div>
   <div id="introSentence"><p id="line1">Neither of us knew...</p><p id="line2">that one little reply...</p><p id="line3">would become our favourite story.</p></div>
 </section>
@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', function () {
 function togglePerfectMusic() {
   var music = document.getElementById("perfectMusic");
   var button = document.getElementById("musicToggle");
+  var reminder = document.getElementById("musicReminder");
 
   if (!music || !button) {
-    alert("Music player was not found.");
     return;
   }
 
@@ -99,14 +99,19 @@ function togglePerfectMusic() {
   if (music.paused) {
     music.play().then(function () {
       button.textContent = "🔊";
+      button.setAttribute("aria-label", "Pause music");
+      if (reminder) {
+        reminder.classList.add("musicReminderHidden");
+      }
     }).catch(function (error) {
-      console.error(error);
+      console.error("Music playback failed:", error);
       button.textContent = "⚠️";
-      alert("The music file could not be played. Please check the MP3 file.");
+      button.setAttribute("aria-label", "Music could not be played");
     });
   } else {
     music.pause();
     button.textContent = "🎵";
+    button.setAttribute("aria-label", "Play music");
   }
 }
 </script>

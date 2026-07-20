@@ -401,3 +401,14 @@
     font-size:.74rem;
   }
 }
+
+
+.musicReminder{
+  transition:opacity .45s ease, transform .45s ease;
+}
+
+.musicReminderHidden{
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+}
