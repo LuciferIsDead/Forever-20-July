@@ -6,6 +6,25 @@
 
   function safeInit() {
     try {
+      var music = document.getElementById("perfectMusic");
+      var musicButton = document.getElementById("musicToggle");
+
+      if (music && musicButton) {
+        music.volume = 0.25;
+        musicButton.addEventListener("click", function () {
+          if (music.paused) {
+            music.play().then(function () {
+              musicButton.textContent = "🔊";
+            }).catch(function () {
+              musicButton.title = "Add assets/music/perfect-edm.mp3 to enable music";
+            });
+          } else {
+            music.pause();
+            musicButton.textContent = "🎵";
+          }
+        });
+      }
+
       var homeBg = document.querySelector("#homeScreen .background");
       if (homeBg && !document.getElementById("v16SecretStar")) {
         var star = document.createElement("button");

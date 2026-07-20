@@ -13,7 +13,7 @@
 <body>
 <section id="introScreen">
   <div class="introBackground"><div class="stars"></div><div class="moon"></div></div>
-  <div class="clockContainer"><div id="clock">11:59:50 PM</div><div id="introDate">19 July 2026</div></div>
+  <div class="clockContainer"><div id="clock">11:59:50 PM</div><div id="introDate">19 July 2025</div></div>
   <div id="noteContainer"><div id="ghumai" class="noteBubble hidden">💭 Ghumai.</div><div id="ghuman" class="noteBubble hidden">💙 Ghuman.</div></div>
   <div id="introSentence"><p id="line1">Neither of us knew...</p><p id="line2">that one little reply...</p><p id="line3">would become our favourite story.</p></div>
 </section>
@@ -84,129 +84,31 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 
 
-
-
-
 <script>
-(function () {
-  function setupMusic() {
-    var music = document.getElementById("perfectMusic");
-    var button = document.getElementById("musicToggle");
-    var reminder = document.getElementById("musicReminder");
+function togglePerfectMusic() {
+  var music = document.getElementById("perfectMusic");
+  var button = document.getElementById("musicToggle");
 
-    if (!music || !button) return;
-
-    music.volume = 0.25;
-
-    button.onclick = function () {
-      if (music.paused) {
-        music.play().then(function () {
-          button.textContent = "🔊";
-          if (reminder) reminder.classList.add("musicReminderHidden");
-        }).catch(function (error) {
-          console.error("Music playback failed:", error);
-          button.textContent = "⚠️";
-        });
-      } else {
-        music.pause();
-        button.textContent = "🎵";
-      }
-    };
+  if (!music || !button) {
+    alert("Music player was not found.");
+    return;
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", setupMusic);
-  } else {
-    setupMusic();
-  }
-})();
-</script>
+  music.volume = 0.25;
 
-
-<script>
-(function () {
-  function createIconBurst(icon) {
-    var layer = document.createElement("div");
-    layer.className = "iconBurstLayer";
-    document.body.appendChild(layer);
-
-    for (var i = 0; i < 34; i++) {
-      var item = document.createElement("span");
-      item.className = "burstIcon";
-      item.textContent = icon;
-
-      var angle = Math.random() * Math.PI * 2;
-      var distance = 90 + Math.random() * 220;
-      var x = Math.cos(angle) * distance;
-      var y = Math.sin(angle) * distance;
-
-      item.style.setProperty("--x", x + "px");
-      item.style.setProperty("--y", y + "px");
-      item.style.setProperty("--r", (Math.random() * 720 - 360) + "deg");
-      item.style.animationDelay = (Math.random() * 0.18) + "s";
-
-      layer.appendChild(item);
-    }
-
-    window.setTimeout(function () {
-      layer.remove();
-    }, 1500);
-  }
-
-  function makeVisualInteractive() {
-    var visual = document.getElementById("chapterVisual");
-    if (!visual || visual.dataset.burstReady === "true") return;
-
-    var icons = visual.querySelectorAll("*");
-    for (var i = 0; i < icons.length; i++) {
-      var element = icons[i];
-      var text = (element.textContent || "").trim();
-
-      if (text === "🌹" || text === "💍" || text === "💎" || text === "🌸") {
-        element.classList.add("burstClickable");
-        element.setAttribute("role", "button");
-        element.setAttribute("tabindex", "0");
-        element.setAttribute("aria-label", "Tap this memory");
-
-        (function (target, icon) {
-          target.addEventListener("click", function (event) {
-            event.stopPropagation();
-            createIconBurst(icon);
-          });
-
-          target.addEventListener("keydown", function (event) {
-            if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              createIconBurst(icon);
-            }
-          });
-        })(element, text);
-      }
-    }
-
-    visual.dataset.burstReady = "true";
-  }
-
-  function watchStoryVisual() {
-    var visual = document.getElementById("chapterVisual");
-    if (!visual) return;
-
-    makeVisualInteractive();
-
-    var observer = new MutationObserver(function () {
-      visual.dataset.burstReady = "false";
-      makeVisualInteractive();
+  if (music.paused) {
+    music.play().then(function () {
+      button.textContent = "🔊";
+    }).catch(function (error) {
+      console.error(error);
+      button.textContent = "⚠️";
+      alert("The music file could not be played. Please check the MP3 file.");
     });
-
-    observer.observe(visual, { childList: true, subtree: true });
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", watchStoryVisual);
   } else {
-    watchStoryVisual();
+    music.pause();
+    button.textContent = "🎵";
   }
-})();
+}
 </script>
 
 </body>
