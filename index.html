@@ -84,36 +84,129 @@ document.addEventListener('DOMContentLoaded', function () {
 </div>
 
 
+
+
+
 <script>
-function togglePerfectMusic() {
-  var music = document.getElementById("perfectMusic");
-  var button = document.getElementById("musicToggle");
-  var reminder = document.getElementById("musicReminder");
+(function () {
+  function setupMusic() {
+    var music = document.getElementById("perfectMusic");
+    var button = document.getElementById("musicToggle");
+    var reminder = document.getElementById("musicReminder");
 
-  if (!music || !button) {
-    return;
-  }
+    if (!music || !button) return;
 
-  music.volume = 0.25;
+    music.volume = 0.25;
 
-  if (music.paused) {
-    music.play().then(function () {
-      button.textContent = "🔊";
-      button.setAttribute("aria-label", "Pause music");
-      if (reminder) {
-        reminder.classList.add("musicReminderHidden");
+    button.onclick = function () {
+      if (music.paused) {
+        music.play().then(function () {
+          button.textContent = "🔊";
+          if (reminder) reminder.classList.add("musicReminderHidden");
+        }).catch(function (error) {
+          console.error("Music playback failed:", error);
+          button.textContent = "⚠️";
+        });
+      } else {
+        music.pause();
+        button.textContent = "🎵";
       }
-    }).catch(function (error) {
-      console.error("Music playback failed:", error);
-      button.textContent = "⚠️";
-      button.setAttribute("aria-label", "Music could not be played");
-    });
-  } else {
-    music.pause();
-    button.textContent = "🎵";
-    button.setAttribute("aria-label", "Play music");
+    };
   }
-}
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupMusic);
+  } else {
+    setupMusic();
+  }
+})();
+</script>
+
+
+<script>
+(function () {
+  function createIconBurst(icon) {
+    var layer = document.createElement("div");
+    layer.className = "iconBurstLayer";
+    document.body.appendChild(layer);
+
+    for (var i = 0; i < 34; i++) {
+      var item = document.createElement("span");
+      item.className = "burstIcon";
+      item.textContent = icon;
+
+      var angle = Math.random() * Math.PI * 2;
+      var distance = 90 + Math.random() * 220;
+      var x = Math.cos(angle) * distance;
+      var y = Math.sin(angle) * distance;
+
+      item.style.setProperty("--x", x + "px");
+      item.style.setProperty("--y", y + "px");
+      item.style.setProperty("--r", (Math.random() * 720 - 360) + "deg");
+      item.style.animationDelay = (Math.random() * 0.18) + "s";
+
+      layer.appendChild(item);
+    }
+
+    window.setTimeout(function () {
+      layer.remove();
+    }, 1500);
+  }
+
+  function makeVisualInteractive() {
+    var visual = document.getElementById("chapterVisual");
+    if (!visual || visual.dataset.burstReady === "true") return;
+
+    var icons = visual.querySelectorAll("*");
+    for (var i = 0; i < icons.length; i++) {
+      var element = icons[i];
+      var text = (element.textContent || "").trim();
+
+      if (text === "🌹" || text === "💍" || text === "💎" || text === "🌸") {
+        element.classList.add("burstClickable");
+        element.setAttribute("role", "button");
+        element.setAttribute("tabindex", "0");
+        element.setAttribute("aria-label", "Tap this memory");
+
+        (function (target, icon) {
+          target.addEventListener("click", function (event) {
+            event.stopPropagation();
+            createIconBurst(icon);
+          });
+
+          target.addEventListener("keydown", function (event) {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              createIconBurst(icon);
+            }
+          });
+        })(element, text);
+      }
+    }
+
+    visual.dataset.burstReady = "true";
+  }
+
+  function watchStoryVisual() {
+    var visual = document.getElementById("chapterVisual");
+    if (!visual) return;
+
+    makeVisualInteractive();
+
+    var observer = new MutationObserver(function () {
+      visual.dataset.burstReady = "false";
+      makeVisualInteractive();
+    });
+
+    observer.observe(visual, { childList: true, subtree: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", watchStoryVisual);
+  } else {
+    watchStoryVisual();
+  }
+})();
 </script>
 
 </body>
