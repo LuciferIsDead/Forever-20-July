@@ -367,3 +367,37 @@
   .v16-secret-note{right:4%;top:19%;max-width:190px}
   .musicToggle{right:14px;bottom:14px}
 }
+
+
+/* Music reminder */
+.musicReminder{
+  position:fixed;
+  right:18px;
+  bottom:72px;
+  z-index:249;
+  max-width:250px;
+  padding:10px 14px;
+  border-radius:14px;
+  background:rgba(2,6,23,.88);
+  border:1px solid rgba(255,255,255,.16);
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.4;
+  text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  animation:musicReminderPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes musicReminderPulse{
+  0%,100%{opacity:.72;transform:translateY(0)}
+  50%{opacity:1;transform:translateY(-3px)}
+}
+
+@media(max-width:600px){
+  .musicReminder{
+    right:14px;
+    bottom:68px;
+    max-width:205px;
+    font-size:.74rem;
+  }
+}
